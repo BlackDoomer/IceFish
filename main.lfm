@@ -1,0 +1,307 @@
+object MainForm: TMainForm
+  Left = 501
+  Height = 480
+  Top = 230
+  Width = 640
+  ActiveControl = BrowseBtn
+  ClientHeight = 480
+  ClientWidth = 640
+  Constraints.MinHeight = 480
+  Constraints.MinWidth = 640
+  OnCreate = FormCreate
+  Position = poDesktopCenter
+  LCLVersion = '1.2.6.0'
+  object HalfPanel1: TPanel
+    Left = 0
+    Height = 232
+    Top = 0
+    Width = 640
+    Align = alTop
+    BevelOuter = bvNone
+    ClientHeight = 232
+    ClientWidth = 640
+    Constraints.MinHeight = 128
+    TabOrder = 0
+    object LDatabase: TLabel
+      Left = 16
+      Height = 16
+      Top = 8
+      Width = 58
+      Caption = 'Database:'
+      Font.Height = 16
+      ParentColor = False
+      ParentFont = False
+    end
+    object DBNameEdit: TEdit
+      Left = 88
+      Height = 21
+      Top = 7
+      Width = 344
+      Align = alCustom
+      Anchors = [akTop, akLeft, akRight]
+      AutoSize = False
+      TabOrder = 0
+    end
+    object LLogin: TLabel
+      Left = 16
+      Height = 16
+      Top = 32
+      Width = 35
+      Caption = 'Login:'
+      Font.Height = 16
+      ParentColor = False
+      ParentFont = False
+    end
+    object LoginEdit: TEdit
+      Left = 88
+      Height = 21
+      Top = 32
+      Width = 128
+      AutoSize = False
+      TabOrder = 1
+    end
+    object LPassword: TLabel
+      Left = 232
+      Height = 16
+      Top = 32
+      Width = 60
+      Caption = 'Password:'
+      Font.Height = 16
+      ParentColor = False
+      ParentFont = False
+    end
+    object PasswordEdit: TEdit
+      Left = 304
+      Height = 21
+      Top = 32
+      Width = 128
+      AutoSize = False
+      EchoMode = emPassword
+      PasswordChar = '*'
+      TabOrder = 2
+    end
+    object BrowseBtn: TButton
+      Left = 440
+      Height = 22
+      Top = 7
+      Width = 24
+      Align = alCustom
+      Anchors = [akTop, akRight]
+      Caption = '...'
+      OnClick = BrowseBtnClick
+      TabOrder = 3
+    end
+    object ConnectBtn: TButton
+      Left = 472
+      Height = 22
+      Top = 7
+      Width = 71
+      Align = alCustom
+      Anchors = [akTop, akRight]
+      Caption = 'Connect'
+      OnClick = ConnectBtnClick
+      TabOrder = 5
+    end
+    object ExecuteBtn: TButton
+      Left = 552
+      Height = 22
+      Top = 7
+      Width = 71
+      Align = alCustom
+      Anchors = [akTop, akRight]
+      Caption = 'Execute'
+      OnClick = ExecuteBtnClick
+      TabOrder = 6
+    end
+    object CommitBtn: TButton
+      Left = 472
+      Height = 22
+      Top = 32
+      Width = 71
+      Align = alCustom
+      Anchors = [akTop, akRight]
+      Caption = 'Commit'
+      OnClick = CommitBtnClick
+      TabOrder = 7
+    end
+    object RollbackBtn: TButton
+      Left = 552
+      Height = 22
+      Top = 32
+      Width = 71
+      Align = alCustom
+      Anchors = [akTop, akRight]
+      Caption = 'Rollback'
+      OnClick = RollbackBtnClick
+      TabOrder = 8
+    end
+    object DMLTgBtn: TToggleBox
+      Left = 436
+      Height = 22
+      Top = 32
+      Width = 32
+      Anchors = [akTop, akRight]
+      Caption = 'DML'
+      TabOrder = 4
+    end
+    object SQLMemo: TMemo
+      Left = 8
+      Height = 176
+      Top = 56
+      Width = 624
+      Align = alCustom
+      Anchors = [akTop, akLeft, akRight, akBottom]
+      Font.Color = clNavy
+      Font.Height = -13
+      Font.Name = 'Courier New'
+      Font.Pitch = fpFixed
+      Font.Quality = fqDraft
+      Font.Style = [fsBold]
+      Lines.Strings = (
+        'Enter your SQL query here...'
+      )
+      OnEnter = SQLMemoEnter
+      ParentFont = False
+      ReadOnly = True
+      ScrollBars = ssAutoBoth
+      TabOrder = 9
+      WantTabs = True
+      WordWrap = False
+    end
+  end
+  object HalfPanel2: TPanel
+    Left = 0
+    Height = 217
+    Top = 240
+    Width = 640
+    Align = alClient
+    BevelOuter = bvNone
+    ClientHeight = 217
+    ClientWidth = 640
+    Constraints.MinHeight = 128
+    TabOrder = 2
+    object PageControl: TPageControl
+      Left = 8
+      Height = 213
+      Top = 0
+      Width = 624
+      ActivePage = LogTab
+      Align = alCustom
+      Anchors = [akTop, akLeft, akRight, akBottom]
+      TabIndex = 0
+      TabOrder = 0
+      object LogTab: TTabSheet
+        Caption = 'Log'
+        ClientHeight = 187
+        ClientWidth = 616
+        object LogMemo: TMemo
+          Left = 8
+          Height = 172
+          Top = 8
+          Width = 600
+          Align = alCustom
+          Anchors = [akTop, akLeft, akRight, akBottom]
+          Font.Color = clBlack
+          Font.Height = -11
+          Font.Name = 'Consolas'
+          Font.Pitch = fpFixed
+          Font.Quality = fqDraft
+          ParentFont = False
+          ReadOnly = True
+          ScrollBars = ssAutoVertical
+          TabOrder = 0
+          TabStop = False
+        end
+      end
+      object DataTab: TTabSheet
+        Caption = 'Data'
+        ClientHeight = 187
+        ClientWidth = 616
+        object DataGrid: TDBGrid
+          Left = 8
+          Height = 172
+          Top = 8
+          Width = 600
+          Align = alCustom
+          Anchors = [akTop, akLeft, akRight, akBottom]
+          Color = clWindow
+          Columns = <>
+          DataSource = DataSource
+          Flat = True
+          Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgHeaderHotTracking, dgAutoSizeColumns, dgDisableDelete, dgDisableInsert, dgRowHighlight, dgThumbTracking]
+          ReadOnly = True
+          TabOrder = 0
+          TitleStyle = tsStandard
+        end
+      end
+    end
+  end
+  object Splitter: TSplitter
+    Cursor = crVSplit
+    Left = 0
+    Height = 8
+    Top = 232
+    Width = 640
+    Align = alTop
+    MinSize = 1
+    ResizeAnchor = akTop
+  end
+  object StatusBar: TStatusBar
+    Left = 0
+    Height = 23
+    Top = 457
+    Width = 640
+    Panels = <    
+      item
+        Width = 128
+      end    
+      item
+        Width = 0
+      end>
+    SimplePanel = False
+  end
+  object OpenDialog: TOpenDialog
+    Title = 'Specify a database'
+    DefaultExt = '.fdb'
+    Filter = 'Firebird Databases (*.fdb)|*.fdb'
+    Options = [ofNoChangeDir, ofPathMustExist, ofFileMustExist, ofEnableSizing, ofViewDetail]
+    left = 568
+    top = 64
+  end
+  object DBConnection: TIBConnection
+    Connected = False
+    LoginPrompt = False
+    AfterConnect = DBConnectionAfterConnect
+    AfterDisconnect = DBConnectionAfterDisconnect
+    BeforeConnect = DBConnectionBeforeConnect
+    BeforeDisconnect = DBConnectionBeforeDisconnect
+    KeepConnection = True
+    Transaction = SQLTransaction
+    CharSet = 'utf8'
+    OnLog = DBConnectionLog
+    LogEvents = []
+    left = 320
+    top = 120
+  end
+  object SQLTransaction: TSQLTransaction
+    Active = False
+    Action = caNone
+    Database = DBConnection
+    left = 400
+    top = 120
+  end
+  object SQLQuery: TSQLQuery
+    PacketRecords = 1
+    FieldDefs = <>
+    Database = DBConnection
+    Transaction = SQLTransaction
+    Params = <>
+    left = 400
+    top = 328
+  end
+  object DataSource: TDataSource
+    DataSet = SQLQuery
+    left = 320
+    top = 328
+  end
+end
